@@ -2,6 +2,8 @@
 
 A simple scoreboard application made with [Solid](https://www.solidjs.com).
 
+![Screenshot](./screenshot.png)
+
 ## Installation
 
 ```bash
@@ -11,4 +13,4 @@ A simple scoreboard application made with [Solid](https://www.solidjs.com).
     bun run dev # or bun run build
 ```
 
-Favicon by Freepik [https://www.flaticon.com/free-icons/scoreboard].
+Favicon by [Freepik](https://www.flaticon.com/free-icons/scoreboard).
