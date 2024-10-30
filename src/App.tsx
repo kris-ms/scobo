@@ -10,7 +10,7 @@ import { Play, Pause, Square, Trash2 } from 'lucide-solid';
 
 function App() {
     const [timer, setTimer] = createSignal(0);
-    const [timerPaused, setTimerPaused] = createSignal(false);
+    const [timerPaused, setTimerPaused] = createSignal(true);
     const [homeTeam, setHomeTeam] = createSignal('Home Team');
     const [awayTeam, setAwayTeam] = createSignal('Away Team');
     const [homeScore, setHomeScore] = createSignal(0);
@@ -74,6 +74,7 @@ function App() {
                     </button>
                     <button
                         onClick={() => {
+                            clearStoredTimer();
                             setTimer(0);
                             setTimerPaused(true);
                             setHomeScore(0);
