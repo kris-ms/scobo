@@ -21,6 +21,16 @@ function App() {
     const formattedTime = () => formatTime(timer());
 
     createEffect(() => {
+        const storedSignalData = localStorage.getItem('signalData');
+        if (!storedSignalData) return () => {};
+        const signalData = JSON.parse(storedSignalData);
+        signalData.timerPaused && setTimerPaused(signalData.timerPaused);
+        signalData.homeTeam && setHomeTeam(signalData.homeTeam);
+        signalData.awayTeam && setAwayTeam(signalData.awayTeam);
+        signalData.homeScore && setHomeScore(signalData.homeScore);
+        signalData.awayScore && setAwayScore(signalData.awayScore);
+        signalData.period && setPeriod(signalData.period);
+        signalData.timerShown && setTimerShown(signalData.timerShown);
         const storedTimer = getStoredTimer();
         if (storedTimer) {
             setTimer(() => storedTimer);
@@ -29,6 +39,16 @@ function App() {
 
     createEffect(() => {
         const interval = setInterval(() => {
+            const localSignalData = {
+                timerPaused: timerPaused(),
+                homeTeam: homeTeam(),
+                awayTeam: awayTeam(),
+                homeScore: homeScore(),
+                awayScore: awayScore(),
+                period: period(),
+                timerShown: timerShown(),
+            };
+            localStorage.setItem('signalData', JSON.stringify(localSignalData));
             if (timerPaused()) return;
             setTimer(timer() + 1);
             storeTimer(timer());
@@ -52,13 +72,13 @@ function App() {
                 <div class="flex justify-center gap-4 border-black bg-slate-400 p-8 text-black">
                     <button
                         onClick={() => setTimerPaused(false)}
-                        class={`cursor-pointer rounded-md ${timerPaused() ? 'bg-slate-200 hover:bg-slate-300' : 'bg-green-400 hover:bg-green-500'} p-2 hover:bg-slate-300`}
+                        class={`cursor-pointer rounded-md ${timerPaused() ? 'bg-slate-200 hover:bg-slate-300' : 'bg-green-400 hover:bg-green-500'} p-2`}
                     >
                         <Play fill="black" />
                     </button>
                     <button
                         onClick={() => setTimerPaused(true)}
-                        class={`cursor-pointer rounded-md ${!timerPaused() ? 'bg-slate-200 hover:bg-slate-300' : 'bg-blue-400 outline-2 outline-white hover:bg-blue-500'} p-2 hover:bg-slate-300`}
+                        class={`cursor-pointer rounded-md ${!timerPaused() ? 'bg-slate-200 hover:bg-slate-300' : 'bg-blue-400 hover:bg-blue-500'} p-2`}
                     >
                         <Pause fill="black" />
                     </button>

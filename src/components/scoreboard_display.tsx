@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal } from 'solid-js';
 
 type ScoreboardDisplayProps = {
     homeTeam: string;
@@ -20,6 +20,13 @@ export const ScoreboardDisplay: Component<ScoreboardDisplayProps> = (props) => {
     const time = () => props.time;
     const period = () => props.period;
     const timerShown = () => props.timerShown;
+
+    createEffect(() => {
+        const storedColor = localStorage.getItem('bgColor');
+        if (storedColor) {
+            setBgColor(storedColor);
+        }
+    });
 
     return (
         <section
@@ -60,6 +67,7 @@ export const ScoreboardDisplay: Component<ScoreboardDisplayProps> = (props) => {
                 type="color"
                 value={bgColor()}
                 onInput={(e) => {
+                    localStorage.setItem('bgColor', e.target.value);
                     setBgColor(e.target.value);
                 }}
             />
