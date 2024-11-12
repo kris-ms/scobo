@@ -35,7 +35,7 @@ export const ScoreboardDisplay: Component<ScoreboardDisplayProps> = (props) => {
         >
             <div class="grid max-h-24 min-w-[640px] grid-cols-2 grid-rows-2 bg-black bg-transparent text-white">
                 <div class="z-10 flex items-center justify-between gap-4 overflow-hidden bg-gradient-to-l from-slate-700 to-black pl-4 shadow-sm">
-                    <span class="block h-12 w-12 overflow-y-hidden rounded-full bg-blue-500" />
+                    <span class="block h-12 w-12 overflow-y-hidden rounded-full bg-white" />
                     <p class="m-0 flex flex-1 justify-start text-3xl font-bold">
                         {homeTeam().substring(0, 3).toUpperCase()}
                     </p>
@@ -44,7 +44,7 @@ export const ScoreboardDisplay: Component<ScoreboardDisplayProps> = (props) => {
                     </p>
                 </div>
                 <div class="z-10 flex items-center justify-between gap-4 overflow-hidden border-l border-l-slate-800 bg-gradient-to-l from-slate-700 to-black pl-4 shadow-sm">
-                    <span class="block h-12 w-12 rounded-full bg-red-500" />
+                    <span class="block h-12 w-12 rounded-full bg-pink-400" />
                     <p class="m-0 flex flex-1 justify-start text-3xl font-bold">
                         {awayTeam().substring(0, 3).toUpperCase()}
                     </p>
